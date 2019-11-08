@@ -38,6 +38,8 @@ void VirtualField();
 
 void calibration();
 void GyroCurrent();
+void AccelCurrent();
+void CalcMotionData();
 
 void CarterController();
 void OtherController();

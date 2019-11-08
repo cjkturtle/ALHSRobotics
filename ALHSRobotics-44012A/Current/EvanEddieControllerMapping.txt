@@ -1,0 +1,16 @@
+Left stick forward/back
+Right stick turning
+CAR DRIVE ^
+
+Right Bumper top - intake
+Right bumper bottom - reverse intake
+
+A - DropStack(); DONE
+Left Bumper top - Swing Up | Pushing DONE
+Left Bumper bottom - Swing Down | Pushing DONE
+X - Swing to location 0 | Push DONE
+Y - Swing to location 1 | Push DONE
+
+Up Arrow - 100% Speed | Toggle DONE
+Down Arrow - 33% Speed | Toggle DONE
+Right Arrow && Left Arrow - Normal Speed | Toggle

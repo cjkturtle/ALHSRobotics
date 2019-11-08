@@ -6,7 +6,10 @@ void CarterController(){
   Brain.resetTimer(); 
     gameStatus = 1;   
     while (true) {
-    MainScreen();    
+    GyroCurrent();
+    AccelCurrent();
+    MainScreen(); 
+       
       // Control setup for the drive speed.
 
       if(Controller.ButtonLeft.pressing()){Speed = 1.5;}
@@ -62,9 +65,8 @@ void CarterController(){
       }
       else{
       // IntakesIdle();
-       IntakeL.stop(brakeType::hold);
-       IntakeR.stop(brakeType::hold);
-
+        IntakeL.stop(brakeType::hold);
+        IntakeR.stop(brakeType::hold);
       }
 
       // Control setup for the reverse four bar.

@@ -4,9 +4,10 @@ using namespace vex;
 void robotInit(bool wifi){
   
   controllerStatus = 1;
-  inBeta = true;
+  inBeta = false;
   gameStatus = 0;
   Home();
+  calibration();
   if(wifi){
     Vision1.setWifiMode(vex::vision::wifiMode::on);
     wifiMode = 1;
@@ -32,6 +33,10 @@ void MainScreen(){
     Brain.Screen.printAt(200,200, "Battery: " "%1.0d" " Percent", Brain.Battery.capacity(vex::percentUnits::pct));
     Brain.Screen.printAt(2, 180, "Program: TTM_V2.4.0");
     Brain.Screen.printAt(2, 240, "Tray Rotations: %1.0f", Swing.rotation(rotationUnits::deg));
+    Brain.Screen.printAt(200, 240, "G: %1.0f", currentGyro);
+    Brain.Screen.printAt(272, 240, "AX: %1.0f", currentAccelX);
+    Brain.Screen.printAt(344, 240, "AY: %1.0f", currentAccelY);
+
 
     if(wifiMode == 1){
       Brain.Screen.printAt(2,220, "Wifi Mode: Enabled");
@@ -47,6 +52,16 @@ void MainScreen(){
     }
     else { 
       Brain.Screen.printAt(2,200, "Mode: Idle");
+    }
+
+    if(controllerStatus == 1){
+      Brain.Screen.printAt(200, 220, "Driver Profile: Carter");
+    }
+    else if(controllerStatus == 2){
+      Brain.Screen.printAt(200, 220, "Driver Profile: Other");
+    }
+    else{
+      Brain.Screen.printAt(200, 220, "Driver Profile: Carter");
     }
   }
 
@@ -393,7 +408,7 @@ void AutonSelector(int selectorState){
           selectorState--;
           break;
         }
-        else if((xPressPos >= 80) && (xPressPos <= 140) && (yPressPos >= 182) && (yPressPos <= 222)){
+        else if((xPressPos >= 330) && (xPressPos <= 390) && (yPressPos >= 182) && (yPressPos <= 222)){
           autonStatus = 9;
           Brain.Screen.clearScreen();
           Brain.Screen.printAt(120,20, "Auton Selection: Skills");
@@ -565,6 +580,38 @@ void GyroTurn(int speed, int degrees){
 }
 
 void GyroCurrent(){
-  currentGyro = get_current();
+  int c = Gyro.value(vex::rotationUnits::deg) + 360;
+  currentGyro = c%360;
 
+}
+
+void AccelCurrent(){
+currentAccelX = AccelX.value(vex::percentUnits::pct);
+currentAccelY = AccelY.value(vex::percentUnits::pct);
+}
+
+void CalcMotionData(){
+    bool collisionLeft = false;
+    bool collisionRight = false;
+    bool collisionFront = false;
+    bool collisionBack = false;
+    
+    if(currentAccelX > 20){
+        collisionFront = true;
+    }
+    else if(currentAccelX > -20){
+        collisionBack = true;
+    }
+    else if(currentAccelX < 20){
+        collisionLeft = true;
+    }
+    else if(currentAccelX < -20){
+        collisionRight = true;
+    }
+    else{
+    collisionLeft = false;
+    collisionRight = false;
+    collisionFront = false;
+    collisionBack = false;
+    }
 }

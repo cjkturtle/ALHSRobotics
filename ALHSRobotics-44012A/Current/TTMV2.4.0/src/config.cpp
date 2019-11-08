@@ -19,6 +19,8 @@ motor R4BR = motor(PORT8, ratio36_1);
 limit IntakeTop = limit(Brain.ThreeWirePort.B);
 limit SwingLimit = limit(Brain.ThreeWirePort.A);
 gyro Gyro = gyro(Brain.ThreeWirePort.C);
+accelerometer AccelX = accelerometer(Brain.ThreeWirePort.D);
+accelerometer AccelY = accelerometer(Brain.ThreeWirePort.E);
 
 controller Controller = controller(primary);
 

@@ -16,6 +16,8 @@ extern motor R4BR;
 extern limit IntakeTop;
 extern limit SwingLimit;
 extern gyro Gyro;
+extern accelerometer AccelX;
+extern accelerometer AccelY;
 
 extern controller Controller;
 extern vex::vision::signature G;

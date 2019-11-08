@@ -33,6 +33,8 @@ extern double virtualFieldRotation;
 extern double virtualFieldX;
 extern double virtualFieldY;
 extern double currentGyro;
+extern double currentAccelX;
+extern double currentAccelY;
 
  
 extern char detColor;

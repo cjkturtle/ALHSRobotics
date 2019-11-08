@@ -27,6 +27,8 @@ double virtualFieldRotation;
 double virtualFieldX;
 double virtualFieldY;
 double currentGyro;
+double currentAccelX;
+double currentAccelY;
  
 
 
