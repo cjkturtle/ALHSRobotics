@@ -39,6 +39,9 @@ void VirtualField();
 void calibration();
 void GyroCurrent();
 
+void CarterController();
+void OtherController();
+
 void BF1();
 void BB1();
 void RF1();
