@@ -3,6 +3,7 @@ using namespace vex;
 
 void robotInit(bool wifi){
   
+  controllerStatus = 1;
   inBeta = true;
   gameStatus = 0;
   Home();

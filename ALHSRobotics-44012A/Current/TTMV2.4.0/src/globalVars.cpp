@@ -19,6 +19,7 @@ int visionStatus = 0;
 int wifiMode;
 int gameStatus;
 int autonStatus;
+int controllerStatus;
 bool swingLimit; // Replace with sensor value.
 bool r4bLimit = true; // Replace with sensor value.
 bool intakeTopStatus; // Replace with sensor value.
