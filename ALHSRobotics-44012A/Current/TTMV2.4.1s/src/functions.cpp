@@ -161,7 +161,7 @@ void SwingUp(){
 
  void SwingToLocation(int location){
    if((location == 1) && (!swingLimit)){ //go up
-    while(!SwingLimit.pressing()){
+    while(!SwingLimit.pressing() && !controllerUseStatus){
      Swing.spin(vex::directionType::fwd, 100*traySpeed,vex::velocityUnits::pct);
       if(SwingLimit.pressing()){
         Swing.stop();
@@ -174,7 +174,7 @@ void SwingUp(){
     int swingMotorCurrent = Swing.rotation(vex::rotationUnits::deg);
     bool swing = false;
     Swing.spin(vex::directionType::rev, 100*slowTraySpeed,vex::velocityUnits::pct);
-    while(!swing){
+    while(!swing && !controllerUseStatus){
       swingMotorCurrent = Swing.rotation(vex::rotationUnits::deg);
       Brain.Screen.printAt(2,2, "SML: %1000l", swingMotorCurrent);
       if(swingMotorCurrent <= dist){
@@ -526,6 +526,34 @@ void VisionGoTo(int color, int minSize, int maxSize){
  }
 }
 
+void ControllerStatusPoll(){
+  if(Competition.isDriverControl()){
+    if(
+      Controller.ButtonA.pressing() ||
+      Controller.ButtonB.pressing() ||
+      Controller.ButtonX.pressing() ||
+      Controller.ButtonY.pressing() ||
+      Controller.ButtonUp.pressing() ||
+      Controller.ButtonRight.pressing() ||
+      Controller.ButtonDown.pressing() ||
+      Controller.ButtonLeft.pressing() ||
+      Controller.ButtonL1.pressing() ||
+      Controller.ButtonL2.pressing() ||
+      Controller.ButtonR1.pressing() ||
+      Controller.ButtonR2.pressing() ||
+      (Controller.Axis1.position() > threashold) ||
+      (Controller.Axis2.position() > threashold) ||
+      (Controller.Axis3.position() > threashold) ||
+      (Controller.Axis4.position() > threashold)){
+
+        controllerUseStatus = true;
+      }
+    else{
+      controllerUseStatus = false;
+    }
+  }
+}
+
 void calibration(){
   Gyro.startCalibration();
   while(Gyro.isCalibrating()){
@@ -587,6 +615,10 @@ void GyroCurrent(){
 void AccelCurrent(){
 currentAccelX = AccelX.value(vex::percentUnits::pct);
 currentAccelY = AccelY.value(vex::percentUnits::pct);
+//velocityX = (AccelX.value(vex::analogUnits::mV) * moveTime);  //Need timers each time the robot moves
+//velocityY = (AccelY.value(vex::analogUnits::mV) * moveTime);
+//distanceX = (velocityX*moveTime);
+//distanceY = (velocityY*moveTime);
 }
 
 void CalcMotionData(){

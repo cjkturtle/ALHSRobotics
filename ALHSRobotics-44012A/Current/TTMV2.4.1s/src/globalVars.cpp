@@ -20,6 +20,7 @@ int wifiMode;
 int gameStatus;
 int autonStatus;
 int controllerStatus;
+bool controllerUseStatus;
 bool swingLimit;
 bool r4bLimit = true; // Replace with sensor value.
 bool intakeTopStatus;

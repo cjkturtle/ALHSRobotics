@@ -21,6 +21,7 @@ extern int visionStatus;
 extern int gameStatus;
 extern int autonStatus;
 extern int controllerStatus;
+extern bool controllerUseStatus;
 extern bool swingLimit;
 extern bool r4bLimit;
 extern bool intakeTopStatus;

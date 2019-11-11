@@ -15,6 +15,7 @@ Features:
 8. Multiple autonomous programs are available to choose from for each starting field position.
 8. Multiple driver profiles are available to be choose from.
 9. Vision sensor is now used in autonomous.
+10. Select while loops meant for addint semi-autonomous controls to driver control loops have been given escape variables for when the controller is in use.
 
 Comments:
 1. Virtual field is not fully complete and is lacking some features in this version.
