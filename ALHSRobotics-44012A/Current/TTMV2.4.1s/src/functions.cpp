@@ -4,7 +4,7 @@ using namespace vex;
 void robotInit(bool wifi){
   
   controllerStatus = 1;
-  inBeta = false;
+  inBeta = true;
   gameStatus = 0;
   //Home();
   calibration();
@@ -31,7 +31,7 @@ void MainScreen(){
     Brain.Screen.printAt(2, 140, "IntakeR Temp: %1.0f" " Percent", IntakeR.temperature(vex::percentUnits::pct));  
     Brain.Screen.printAt(2, 160, "Time: %1.0f" " Seconds", Brain.timer(vex::timeUnits::sec));
     Brain.Screen.printAt(200,200, "Battery: " "%1.0d" " Percent", Brain.Battery.capacity(vex::percentUnits::pct));
-    Brain.Screen.printAt(2, 180, "Program: TTM_V2.4.0");
+    Brain.Screen.printAt(2, 180, "Program: TTM_V2.4.1s");
     Brain.Screen.printAt(2, 240, "Tray Rotations: %1.0f", Swing.rotation(rotationUnits::deg));
     Brain.Screen.printAt(208, 240, " G: %1.0f", currentGyro);
     Brain.Screen.printAt(288, 240, "AX: %1.0f", currentAccelX);

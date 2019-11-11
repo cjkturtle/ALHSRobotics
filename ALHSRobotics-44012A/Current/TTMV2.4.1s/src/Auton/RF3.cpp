@@ -1,13 +1,13 @@
 #include "vex.h"
 
 
-void BF3(){
+void RF3(){
   
   Brain.Screen.clearScreen();
   Brain.Screen.setFillColor(transparent);
-  Brain.Screen.printAt(151, 80, "Auton: Blue Front 3");
+  Brain.Screen.printAt(151, 80, "Auton: Red Front 3");
   Brain.Screen.printAt(151, 100, "File: TTM_V2.3.2");
-  StartVirtualField(124, 60, 180);
+  StartVirtualField(9, 120, 0);
 
   IntakesMove(-0.25); // Unfold Tray
   Sleep(100); // Wait .5 seconds
@@ -17,12 +17,12 @@ void BF3(){
   Sleep(500);
   VirtualField(); // Print updated location to virtual field
 
-  DegTurn(90, 40);
+  DegTurn(-90, 40);
   DistMove(10, 50);
   DistMove(8,15);
   Sleep(100);
 
-  DegTurn(52.5, 40);
+  DegTurn(-52.5, 40);
   DistMove(13, 30);
  
   IntakesMove(-0.5); // Turn on intakes

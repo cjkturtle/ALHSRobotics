@@ -21,7 +21,7 @@ void autoLoop() {
     //RF3();
     //RB5();
     //Skills();
-    //TestAuton();
+    TestAuton();
   }
   else{
     if((autonStatus == 1) && (Competition.isAutonomous())){
