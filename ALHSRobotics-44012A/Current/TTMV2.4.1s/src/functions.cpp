@@ -495,7 +495,6 @@ void VisionInit(int color){
 // Function for traveling to the nearest object determined by the vision initilization function.
 
 void VisionGoTo(int color, int minSize, int maxSize){
-  MainScreen();
   int i = 0;
   while(!intakeTopStatus){
     if(color == 1){
@@ -511,11 +510,11 @@ void VisionGoTo(int color, int minSize, int maxSize){
     Sleep(5);
   if(i == 5){    
     if(Vision1.largestObject.exists && Vision1.largestObject.width>=minSize && Vision1.largestObject.width<=maxSize){
-        double velX = ((Vision1.largestObject.originX - 158.5)*0.6);
-        double velY = ((Vision1.largestObject.originY - 185.25)*-0.6); //190
+        double velX = ((((Vision1.largestObject.originX) + ((Vision1.largestObject.width+1)/2)) - 158.5)*0.3165);
+        double velY = ((((Vision1.largestObject.originY) + ((Vision1.largestObject.height+1)/2)) - 106.5)*-0.3165); //190 //185.25
 
-        LB.spin(vex::directionType::fwd, ((velY + velX)/2) * .5, vex::velocityUnits::pct);
-        RB.spin(vex::directionType::rev, ((velY - velX)/2) * .5, vex::velocityUnits::pct);
+        LB.spin(vex::directionType::fwd, ((50 + velX)/2) * .5, vex::velocityUnits::pct);
+        RB.spin(vex::directionType::rev, ((50 - velX)/2) * .5, vex::velocityUnits::pct);
         Sleep(50);
         i = 0;
     }

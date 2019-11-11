@@ -18,8 +18,8 @@ void CarterController(){
 
       // Setup for the single joystick controller drive.
 
-        JRX = Controller.Axis1.value(); 
-        JRY = Controller.Axis2.value();
+        JRX = Controller.Axis1.position(percentUnits::pct); 
+        JRY = Controller.Axis2.position(percentUnits::pct);
 
       if(fabs(JRX) <= deadZone){JRX = 0;}
       if(fabs(JRY) <= deadZone){JRY = 0;}
