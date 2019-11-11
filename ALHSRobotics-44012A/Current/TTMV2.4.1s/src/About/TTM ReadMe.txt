@@ -1,8 +1,8 @@
 Team: 44012A
 Competition: Tower Takeover
 File Author: Carter Knox
-Date: 11/4/2019
-Version: 2.4.0
+Date: 11/11/2019
+Version: 2.4.1s
 
 Features: 
 1. Initialization, driver control, and autonomous control periods.
@@ -14,8 +14,8 @@ Features:
 7. Virtual field and robot mapped to follow autonomous code.
 8. Multiple autonomous programs are available to choose from for each starting field position.
 8. Multiple driver profiles are available to be choose from.
+9. Vision sensor is now used in autonomous.
 
 Comments:
 1. Virtual field is not fully complete and is lacking some features in this version.
 2. The gyroscope is initialized but not yet used in this version.
-3. The vision sensor is initualized but not yet used in this version.
