@@ -511,7 +511,7 @@ void VisionGoTo(int color, int minSize, int maxSize){
   if(i == 5){    
     if(Vision1.largestObject.exists && Vision1.largestObject.width>=minSize && Vision1.largestObject.width<=maxSize){
         double velX = ((((Vision1.largestObject.originX) + ((Vision1.largestObject.width+1)/2)) - 158.5)*0.3165);
-        double velY = ((((Vision1.largestObject.originY) + ((Vision1.largestObject.height+1)/2)) - 106.5)*-0.3165); //190 //185.25
+        //double velY = ((((Vision1.largestObject.originY) + ((Vision1.largestObject.height+1)/2)) - 106.5)*-0.3165); //190 //185.25
 
         LB.spin(vex::directionType::fwd, ((50 + velX)/2) * .5, vex::velocityUnits::pct);
         RB.spin(vex::directionType::rev, ((50 - velX)/2) * .5, vex::velocityUnits::pct);

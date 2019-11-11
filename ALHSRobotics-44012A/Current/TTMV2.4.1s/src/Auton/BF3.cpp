@@ -6,7 +6,7 @@ void BF3(){
   Brain.Screen.clearScreen();
   Brain.Screen.setFillColor(transparent);
   Brain.Screen.printAt(151, 80, "Auton: Blue Front 3");
-  Brain.Screen.printAt(151, 100, "File: TTM_V2.3.2");
+  Brain.Screen.printAt(151, 100, "File: TTM_V2.4.0");
   StartVirtualField(124, 60, 180);
 
   IntakesMove(-0.25); // Unfold Tray

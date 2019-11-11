@@ -20,3 +20,4 @@ Features:
 Comments:
 1. Virtual field is not fully complete and is lacking some features in this version.
 2. The gyroscope is initialized but not yet used in this version.
+3. The accelerometer is initialization but not yet setup or used in this version.
