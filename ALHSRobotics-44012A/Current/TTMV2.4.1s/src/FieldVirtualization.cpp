@@ -29,74 +29,75 @@ void VirtualField(){
   GyroCurrent();
   //int preRotationAmount = newStartRotation + virtualFieldRotation;
   //int rotationAmount = preRotationAmount;
-  int rotationAmount = currentGyro;
+  int rotationAmount = currentGyro +  newStartRotation;
 
   if((rotationAmount > 0) && (rotationAmount < 90)){
     
-    xPos = newStartX + (virtualFieldX * sin(rotationAmount));
-    yPos = newStartY + (virtualFieldY * cos(rotationAmount));
-  
+    //xPos = newStartX + (distanceX * sin(rotationAmount));
+    //yPos = newStartY + (distanceX * cos(rotationAmount));
+    xPos = (newStartX + (distanceX * sin(rotationAmount))) - (sqrt(pow(distanceX, 2) + pow(distanceY, 2))) ;
+    yPos = (newStartY + (distanceX * sin(rotationAmount))) - (sqrt(pow(distanceX, 2) + pow(distanceY, 2))) ;
 
     RobotTemplate(xPos, yPos, rotationAmount);
   
     newStartX = xPos;
     newStartY = yPos;
-    newStartRotation = rotationAmount;
-    virtualFieldX = 0;		
-    virtualFieldY = 0;
+    //newStartRotation = rotationAmount;
+    distanceX = 0;		
+    distanceX = 0;
     virtualFieldRotation = 0;
    }
 
   else if((rotationAmount > 90) && (rotationAmount < 180 )){
 
-    xPos = newStartX - fabs(virtualFieldX * cos((rotationAmount - 90)));
-    yPos = newStartY + fabs(virtualFieldY * sin((rotationAmount - 90)));
+    xPos = newStartX - fabs(distanceX * cos((rotationAmount - 90)));
+    yPos = newStartY + fabs(distanceX * sin((rotationAmount - 90)));
   
 
     RobotTemplate(xPos, yPos, rotationAmount);
   
     newStartX = xPos;
     newStartY = yPos;
-    newStartRotation = rotationAmount;
-    virtualFieldX = 0;		
-    virtualFieldY = 0;
+    //newStartRotation = rotationAmount;
+    distanceX = 0;		
+    distanceX = 0;
     virtualFieldRotation = 0;
     }
 
   else if((rotationAmount > 180) && (rotationAmount < 270)){
 
-    xPos = newStartX - fabs(virtualFieldX * sin((rotationAmount - 180)));
-    yPos = newStartY - fabs(virtualFieldY * cos((rotationAmount - 180)));
+    xPos = newStartX - fabs(distanceX * sin((rotationAmount - 180)));
+    yPos = newStartY - fabs(distanceX * cos((rotationAmount - 180)));
   
 
     RobotTemplate(xPos, yPos, rotationAmount);
   
     newStartX = xPos;
     newStartY = yPos;
-    newStartRotation = rotationAmount;
-    virtualFieldX = 0;		
-    virtualFieldY = 0;
+    //newStartRotation = rotationAmount;
+    distanceX = 0;		
+    distanceX = 0;
     virtualFieldRotation = 0;
     }
 
   else if((rotationAmount > 270) && (rotationAmount < 360)){
 
-    xPos = newStartX - (virtualFieldX * (sin(rotationAmount)));
-    yPos = newStartY - (virtualFieldY * (cos((rotationAmount))));
+    xPos = newStartX - (distanceX * (sin(rotationAmount)));
+    yPos = newStartY - (distanceX * (cos((rotationAmount))));
   
 
     RobotTemplate(xPos, yPos, rotationAmount);
   
     newStartX = xPos;
     newStartY = yPos;
-    newStartRotation = rotationAmount;
-    virtualFieldX = 0;		
-    virtualFieldY = 0;
+    //newStartRotation = rotationAmount;
+    distanceX = 0;		
+    distanceX = 0;
     virtualFieldRotation = 0;
    }
   else if(rotationAmount == 0){
     
-    xPos = newStartX + (virtualFieldX * 1);
+    xPos = newStartX + (distanceX * 1);
     yPos = newStartY;
   
 
@@ -104,28 +105,28 @@ void VirtualField(){
   
     newStartX = xPos;
     newStartY = yPos;
-    newStartRotation = rotationAmount;
-    virtualFieldX = 0;		
-    virtualFieldY = 0;
+    //newStartRotation = rotationAmount;
+    distanceX = 0;		
+    distanceX = 0;
     virtualFieldRotation = 0;
    }
    else if(rotationAmount == 90){
       xPos = newStartX;
-      yPos = newStartY + (virtualFieldY);
+      yPos = newStartY + (distanceX);
   
 
       RobotTemplate(xPos, yPos, rotationAmount);
   
       newStartX = xPos;
       newStartY = yPos;
-      newStartRotation = rotationAmount;
-      virtualFieldX = 0;		
-      virtualFieldY = 0;
+      //newStartRotation = rotationAmount;
+      distanceX = 0;		
+      distanceX = 0;
       virtualFieldRotation = 0;
    }
 
    else if(rotationAmount == 180){
-      xPos = newStartX - virtualFieldX;
+      xPos = newStartX - distanceX;
       yPos = newStartY;
   
 
@@ -133,9 +134,9 @@ void VirtualField(){
   
       newStartX = xPos;
       newStartY = yPos;
-      newStartRotation = rotationAmount;
-      virtualFieldX = 0;		
-      virtualFieldY = 0;
+     // newStartRotation = rotationAmount;
+      distanceX = 0;		
+      distanceX = 0;
       virtualFieldRotation = 0;
    }
    

@@ -3,13 +3,14 @@ using namespace vex;
 
 void CarterController(){
 
+int oldMoveTimer = 0;
   Brain.resetTimer(); 
     gameStatus = 1;   
     while (true) {
     GyroCurrent();
     AccelCurrent();
     MainScreen(); 
-       
+     double moveTimer = Brain.timer(timeUnits::msec);   
       // Control setup for the drive speed.
 
       if(Controller.ButtonLeft.pressing()){Speed = 1.5;}
@@ -122,14 +123,9 @@ void CarterController(){
 
     }
 
-    /*if(LB.temperature((vex::percentUnits::pct) > 65) || ((RB.temperature(vex::percentUnits::pct) > 65)){
-      Controller.Screen.clearScreen();
-      Controller.Screen.print("DRIVE MOTOR OVERTEMP");
+    if(LB.velocity(percentUnits::pct) > 1 || RB.velocity(percentUnits::pct) > 1){
+    moveTime = moveTimer - oldMoveTimer;
+    oldMoveTimer = moveTimer;
     }
-
-    else{
-
-    }
-    */
   } 
 }    
