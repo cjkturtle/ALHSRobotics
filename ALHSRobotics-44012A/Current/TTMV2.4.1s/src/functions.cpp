@@ -6,7 +6,7 @@ void robotInit(bool wifi){
   controllerStatus = 1;
   inBeta = true;
   gameStatus = 0;
-  //Home();
+  Home();
   calibration();
   if(wifi){
     Vision1.setWifiMode(vex::vision::wifiMode::on);
@@ -615,10 +615,10 @@ void GyroCurrent(){
 void AccelCurrent(){
 currentAccelX = AccelX.value(vex::percentUnits::pct);
 currentAccelY = AccelY.value(vex::percentUnits::pct);
-//velocityX = (AccelX.value(vex::analogUnits::mV) * moveTime);  //Need timers each time the robot moves
-//velocityY = (AccelY.value(vex::analogUnits::mV) * moveTime);
-//distanceX = (velocityX*moveTime);
-//distanceY = (velocityY*moveTime);
+velocityX = (AccelX.value(vex::analogUnits::mV) * moveTime);  //Need timers each time the robot moves
+velocityY = (AccelY.value(vex::analogUnits::mV) * moveTime);
+distanceX = (velocityX*moveTime);
+distanceY = (velocityY*moveTime);
 }
 
 void CalcMotionData(){

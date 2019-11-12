@@ -30,9 +30,12 @@ double virtualFieldY;
 double currentGyro;
 double currentAccelX;
 double currentAccelY;
+double velocityX;
+double velocityY;
+double distanceX;
+double distanceY;
+double moveTime;
  
-
-
 char detColor;
 double distToObject;
 

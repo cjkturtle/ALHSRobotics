@@ -55,7 +55,6 @@ void autoLoop() {
 
     }
   }
-
   if(IntakeTop.pressing()){
     intakeTopStatus = true;
   }

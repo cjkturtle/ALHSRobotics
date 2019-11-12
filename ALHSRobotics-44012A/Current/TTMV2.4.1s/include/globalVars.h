@@ -36,6 +36,11 @@ extern double virtualFieldY;
 extern double currentGyro;
 extern double currentAccelX;
 extern double currentAccelY;
+extern double velocityX;
+extern double velocityY;
+extern double distanceX;
+extern double distanceY;
+extern double moveTime;
 
  
 extern char detColor;
