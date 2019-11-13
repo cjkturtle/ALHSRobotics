@@ -524,6 +524,8 @@ void VisionGoTo(int color, int minSize, int maxSize){
     }
     else if (LoadLight.value(analogUnits::pct) > 10) {
       Brake();
+      IntakesMove(1);
+      Sleep(250);
       IntakesStop();
       break;
     }
