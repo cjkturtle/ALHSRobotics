@@ -68,6 +68,14 @@ void autoLoop() {
   else{
     swingLimit = false;
   }
+
+  if(LoadLight.value(analogUnits::pct) > 10){
+    intakeLoadedStatus = true;
+  }
+  else{
+    intakeLoadedStatus = false;
+  }
+
 }
 
 

@@ -36,6 +36,7 @@ void MainScreen(){
     Brain.Screen.printAt(208, 240, " G: %1.0f", currentGyro);
     Brain.Screen.printAt(288, 240, "AX: %1.0f", currentAccelX);
     Brain.Screen.printAt(360, 240, "AY: %1.0f", currentAccelY);
+    Brain.Screen.printAt(200, 20, "IntakeLoad: %1.0d", LoadLight.value(analogUnits::pct));
 
 
     if(wifiMode == 1){
@@ -496,7 +497,9 @@ void VisionInit(int color){
 
 void VisionGoTo(int color, int minSize, int maxSize){
   int i = 0;
-  while(!intakeTopStatus){
+  //bool breakStatus = false;
+  while(true){
+    Brain.Screen.printAt(151, 120, "IntakeLoad: %1.0d", LoadLight.value(analogUnits::pct));
     if(color == 1){
       Vision1.takeSnapshot(G);
     }
@@ -510,17 +513,23 @@ void VisionGoTo(int color, int minSize, int maxSize){
     Sleep(5);
   if(i == 5){    
     if(Vision1.largestObject.exists && Vision1.largestObject.width>=minSize && Vision1.largestObject.width<=maxSize){
+        IntakesMove(1);
         double velX = ((((Vision1.largestObject.originX) + ((Vision1.largestObject.width+1)/2)) - 158.5)*0.3165);
         //double velY = ((((Vision1.largestObject.originY) + ((Vision1.largestObject.height+1)/2)) - 106.5)*-0.3165); //190 //185.25
 
-        LB.spin(vex::directionType::fwd, ((50 + velX)/2) * .5, vex::velocityUnits::pct);
-        RB.spin(vex::directionType::rev, ((50 - velX)/2) * .5, vex::velocityUnits::pct);
+        LB.spin(vex::directionType::fwd, ((100 + velX)/2) * .5, vex::velocityUnits::pct);
+        RB.spin(vex::directionType::rev, ((100 - velX)/2) * .5, vex::velocityUnits::pct);
         Sleep(50);
         i = 0;
     }
+    else if (LoadLight.value(analogUnits::pct) > 10) {
+      Brake();
+      IntakesStop();
+      break;
+    }
     else {
-    Brake();
-    i = 0;
+      Brake();
+      IntakesStop();
     } 
   } 
  }

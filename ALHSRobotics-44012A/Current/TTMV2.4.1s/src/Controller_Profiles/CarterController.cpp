@@ -122,6 +122,12 @@ int oldMoveTimer = 0;
     else {
 
     }
+     if(LoadLight.value(analogUnits::pct) > 10){
+    intakeLoadedStatus = true;
+  }
+  else{
+    intakeLoadedStatus = false;
+  }
 
     if(LB.velocity(percentUnits::pct) > 1 || RB.velocity(percentUnits::pct) > 1){
     moveTime = moveTimer - oldMoveTimer;

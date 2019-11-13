@@ -21,6 +21,7 @@ limit SwingLimit = limit(Brain.ThreeWirePort.A);
 gyro Gyro = gyro(Brain.ThreeWirePort.C);
 accelerometer AccelX = accelerometer(Brain.ThreeWirePort.D);
 accelerometer AccelY = accelerometer(Brain.ThreeWirePort.E);
+light LoadLight = light(Brain.ThreeWirePort.F);
 
 controller Controller = controller(primary);
 

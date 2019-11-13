@@ -24,6 +24,7 @@ bool controllerUseStatus;
 bool swingLimit;
 bool r4bLimit = true; // Replace with sensor value.
 bool intakeTopStatus;
+bool intakeLoadedStatus;
 double virtualFieldRotation;
 double virtualFieldX;
 double virtualFieldY;

@@ -18,6 +18,7 @@ extern limit SwingLimit;
 extern gyro Gyro;
 extern accelerometer AccelX;
 extern accelerometer AccelY;
+extern light LoadLight;
 
 extern controller Controller;
 extern vex::vision::signature G;

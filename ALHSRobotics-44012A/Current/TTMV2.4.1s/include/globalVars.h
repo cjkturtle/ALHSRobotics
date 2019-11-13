@@ -25,6 +25,7 @@ extern bool controllerUseStatus;
 extern bool swingLimit;
 extern bool r4bLimit;
 extern bool intakeTopStatus;
+extern bool intakeLoadedStatus;
 extern int Gyrodif;
 extern int GyroDirection;
 extern int accelX;
