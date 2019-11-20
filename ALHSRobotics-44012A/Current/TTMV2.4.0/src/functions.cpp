@@ -170,7 +170,7 @@ void SwingUp(){
   }
 
   else if(location == 0){ //go down
-    float dist = -430.; //test value
+    float dist = -400.; //test value
     int swingMotorCurrent = Swing.rotation(vex::rotationUnits::deg);
     bool swing = false;
     Swing.spin(vex::directionType::rev, 100*slowTraySpeed,vex::velocityUnits::pct);

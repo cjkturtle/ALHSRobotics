@@ -1,0 +1,35 @@
+#include "vex.h"
+
+
+void RB5(){
+  
+  Brain.Screen.clearScreen();
+  Brain.Screen.setFillColor(transparent);
+  Brain.Screen.printAt(151, 80, "Auton: Red Back 5");
+  Brain.Screen.printAt(151, 100, "File: TTM_V2.4.0");
+  StartVirtualField(12, 111, 270);
+  
+  IntakesMove(-0.25); // Unfold Tray
+  Sleep(500); // Wait .5 seconds
+  IntakesMove(1); // Turn on intakes
+  DistMove(48, 30); // Move forward 48 inches
+  IntakesStop(); // Stop the intakes
+  VirtualField(); // Print updated location to virtual field
+
+  DistMove(31, -50); // Move backward 31 inches
+  VirtualField(); // Print updated location to virtual field
+  Sleep(200);
+  DegTurn(140, 30); // Left turn 95 degrees
+  VirtualField(); // Print updated location to virtual field
+  DistMove(11,40);
+  IntakesMove(-0.25);
+  Sleep(700);
+  IntakesStop();
+  SwingToLocation(0);
+  IntakesMove(-0.5);
+  Sleep(1000);
+  DistMove(3, -6);
+  DistMove(6, -100);
+  SwingToLocation(1);
+  AllStop();
+}

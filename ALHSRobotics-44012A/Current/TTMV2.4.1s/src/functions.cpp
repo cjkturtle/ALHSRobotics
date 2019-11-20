@@ -4,7 +4,7 @@ using namespace vex;
 void robotInit(bool wifi){
   
   controllerStatus = 1;
-  inBeta = true;
+  inBeta = false;
   gameStatus = 0;
   Home();
   calibration();
@@ -34,7 +34,7 @@ void MainScreen(){
     Brain.Screen.printAt(2, 180, "Program: TTM_V2.4.1s");
     Brain.Screen.printAt(2, 240, "Tray Rotations: %1.0f", Swing.rotation(rotationUnits::deg));
     Brain.Screen.printAt(208, 240, " G: %1.0f", currentGyro);
-    Brain.Screen.printAt(288, 240, "AX: %1.0f", currentAccelX);
+    Brain.Screen.printAt(288, 240, "VY: %1.0f", velocityY);
     Brain.Screen.printAt(360, 240, "AY: %1.0f", currentAccelY);
     Brain.Screen.printAt(200, 20, "IntakeLoad: %1.0d", LoadLight.value(analogUnits::pct));
 
@@ -162,23 +162,27 @@ void SwingUp(){
 
  void SwingToLocation(int location){
    if((location == 1) && (!swingLimit)){ //go up
-    while(!SwingLimit.pressing() && !controllerUseStatus){
+   Sleep(100);
+    while(!SwingLimit.pressing()){
      Swing.spin(vex::directionType::fwd, 100*traySpeed,vex::velocityUnits::pct);
       if(SwingLimit.pressing()){
         Swing.stop();
+        break;
       }
     }   
   }
 
   else if(location == 0){ //go down
-    float dist = -430.; //test value
+    float dist = -400.; //test value
     int swingMotorCurrent = Swing.rotation(vex::rotationUnits::deg);
     bool swing = false;
+    Sleep(100);
     Swing.spin(vex::directionType::rev, 100*slowTraySpeed,vex::velocityUnits::pct);
-    while(!swing && !controllerUseStatus){
+    while(!swing){
+      ControllerStatusPoll();
       swingMotorCurrent = Swing.rotation(vex::rotationUnits::deg);
       Brain.Screen.printAt(2,2, "SML: %1000l", swingMotorCurrent);
-      if(swingMotorCurrent <= dist){
+      if(swingMotorCurrent <= dist || controllerUseStatus){
         Swing.stop();
         swing = true;
       } 
@@ -316,9 +320,9 @@ void SwingTurn(double degrees, int speed){
 
 void MoveComplete(double distance, int speed){
   double speedChangeDistance = (distance/10);
-  AccelMove(distance, speed);
-  DistMove(speedChangeDistance, speed);
-  DecelMove(speedChangeDistance, speed);
+  AccelMove(speedChangeDistance*2, speed);
+  DistMove(speedChangeDistance*6, speed);
+  DecelMove(speedChangeDistance*2, speed);
 }
 
 void AutonSelectorScreenInit(){
@@ -495,10 +499,11 @@ void VisionInit(int color){
 
 // Function for traveling to the nearest object determined by the vision initilization function.
 
-void VisionGoTo(int color, int minSize, int maxSize){
+void VisionGoTo(int color, int minSize, int maxSize, int lightThreashold){
   int i = 0;
+  bool intake = false;
   //bool breakStatus = false;
-  while(true){
+  while(!intake){
     Brain.Screen.printAt(151, 120, "IntakeLoad: %1.0d", LoadLight.value(analogUnits::pct));
     if(color == 1){
       Vision1.takeSnapshot(G);
@@ -522,17 +527,19 @@ void VisionGoTo(int color, int minSize, int maxSize){
         Sleep(50);
         i = 0;
     }
-    else if (LoadLight.value(analogUnits::pct) > 10) {
+    else {
+      Brake();
+      IntakesStop();
+      i = 0;
+    } 
+    if (IntakeTop.pressing()){
       Brake();
       IntakesMove(1);
       Sleep(250);
       IntakesStop();
-      break;
+      intake = true;
     }
-    else {
-      Brake();
-      IntakesStop();
-    } 
+    
   } 
  }
 }
@@ -610,11 +617,11 @@ void GyroTurn(int speed, int degrees){
         }
         if(!done){
         LB.spin(vex::directionType::fwd,speed * dir,vex::velocityUnits::pct);
-        RB.spin(vex::directionType::rev, speed * dir, vex::velocityUnits::pct);
+        RB.spin(vex::directionType::fwd, speed * dir, vex::velocityUnits::pct);
         }
     }
-    LB.stop(vex::brakeType::brake);
-    RB.stop(vex::brakeType::brake);
+    LB.stop(vex::brakeType::hold);
+    RB.stop(vex::brakeType::hold);
 }
 
 void GyroCurrent(){
@@ -624,10 +631,10 @@ void GyroCurrent(){
 }
 
 void AccelCurrent(){
-currentAccelX = AccelX.value(vex::percentUnits::pct);
-currentAccelY = AccelY.value(vex::percentUnits::pct);
-velocityX = (AccelX.value(vex::analogUnits::mV) * moveTime);  //Need timers each time the robot moves
-velocityY = (AccelY.value(vex::analogUnits::mV) * moveTime);
+currentAccelX = AccelX.value(vex::analogUnits::range12bit);
+currentAccelY = AccelY.value(vex::analogUnits::range12bit) - 2040;
+velocityX = ((AccelX.value(vex::analogUnits::range12bit) - 2040) * moveTime);  //Need timers each time the robot moves
+velocityY = ((AccelY.value(vex::analogUnits::range12bit) - 2040) * moveTime);
 distanceX = (velocityX*moveTime);
 distanceY = (velocityY*moveTime);
 }

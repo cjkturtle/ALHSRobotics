@@ -6,17 +6,17 @@ void Skills(){
   Brain.Screen.clearScreen();
   Brain.Screen.setFillColor(transparent);
   Brain.Screen.printAt(151, 80, "Auton: Skills");
-  Brain.Screen.printAt(151, 100, "File: TTM_V2.4.0");
+  Brain.Screen.printAt(151, 100, "File: TTM_V2.4.1s");
   StartVirtualField(9, 120, 0);
 
-  IntakesMove(-0.5); // Unfold Tray
+  IntakesMove(-0.25); // Unfold Tray
   Sleep(500); // Wait .5 seconds
-  IntakesMove(0.5); // Turn on intakes
-  DistMove(48, 15); // Move forward 48 inches
+  IntakesMove(1); // Turn on intakes
+  DistMove(45, 15); // Move forward 48 inches
   IntakesStop(); // Stop the intakes
   VirtualField(); // Print updated location to virtual field
 
-  DistMove(31, -40); // Move backward 31 inches
+  DistMove(28, -30); // Move backward 31 inches
   VirtualField(); // Print updated location to virtual field
   Sleep(200);
   DegTurn(-95, 20); // Left turn 95 degrees
@@ -24,7 +24,7 @@ void Skills(){
 
   DistMove(20, 40); // Move forward 24 inches
   VirtualField(); // Print updated location to virtual field
-  IntakesMove(0.5); // Turn on intakes
+  IntakesMove(0.75); // Turn on intakes
   DistMove(7, 20); // Keep moving 6 more inches
   VirtualField(); // Print updated location to virtual field
   Sleep(400); // Wait 0.25 seconds

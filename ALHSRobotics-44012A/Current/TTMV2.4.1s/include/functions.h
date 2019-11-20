@@ -29,12 +29,13 @@ void Sleep(double time);
 void AllStop();
 void Home();
 void VisionInit(int color);
-void VisionGoTo(int color, int minSize, int maxSize);
+void VisionGoTo(int color, int minSize, int maxSize, int lightThreashold);
 
 void FieldTemplate();
 void RobotTemplate(double preMidX, double preMidY, double deg);
 void StartVirtualField(int startX, int startY, int startRotation);
 void VirtualField();
+void ControllerStatusPoll();
 
 void calibration();
 void GyroCurrent();
