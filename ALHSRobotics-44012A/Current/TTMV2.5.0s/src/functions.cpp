@@ -174,7 +174,7 @@ void SwingUp(){
   }
 
   else if(location == 0){ //go down
-    float dist = -430.; //test value
+    float dist = -400.; //test value
     int swingMotorCurrent = Swing.rotation(vex::rotationUnits::deg);
     bool swing = false;
     Sleep(100);
@@ -282,7 +282,7 @@ void AccelMove(int AccelDist, int EndSpeed){
   double AccelSpeed = (EndSpeed/10);
   while(i <= 10){
       
- DistMove(AccelDist, AccelSpeed*i);
+ DistMove(AccelMove, AccelSpeed*i);
   i++;
   }
 }
@@ -295,7 +295,7 @@ void DecelMove(int DecelDist, int StartSpeed){
   double AccelSpeed = (StartSpeed/10);
   while((i <= 10) && (i >=1)){    
       
- DistMove(AccelDist, AccelSpeed*i);
+ DistMove(AccelMove, AccelSpeed*i);
   i--;
   }
 }
