@@ -91,6 +91,7 @@ void Skills(){
   VirtualField();
   Sleep(200);
   SwingToLocation(1);
+  // 20 Points.
   DistMove(10, -20);
   DegTurn(-50, 20);
   DistMove(40, 40); 

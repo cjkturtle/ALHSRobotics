@@ -29,7 +29,7 @@ void MainScreen(){
     Brain.Screen.printAt(2, 100, "IntakeR Temp: %1.0f" " C", IntakeR.temperature(vex::temperatureUnits::celsius));  
     Brain.Screen.printAt(2, 160, "Time: %1.0f" " Seconds", Brain.timer(vex::timeUnits::sec));
     Brain.Screen.printAt(200, 180, "Battery: " "%1.0d" " Percent", Brain.Battery.capacity(vex::percentUnits::pct));
-    Brain.Screen.printAt(2, 120, "Program: TTM_V2.4.1s");
+    Brain.Screen.printAt(2, 120, "Program: TTM_V2.5.0");
     Brain.Screen.printAt(220, 60, "Tray Rotations: %1.0f", Swing.rotation(rotationUnits::deg));
     Brain.Screen.printAt(220, 80, " G: %1.0f", currentGyro);
     Brain.Screen.printAt(220, 100, "VY: %1.0f", velocityY);

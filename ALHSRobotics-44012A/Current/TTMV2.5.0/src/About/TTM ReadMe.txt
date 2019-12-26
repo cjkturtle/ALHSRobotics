@@ -2,7 +2,8 @@ Team: 44012A
 Competition: Tower Takeover
 File Author: Carter Knox
 Date: 11/19/2019
-Version: 2.5.0s
+Version: 2.5.0
+Status: Stable
 
 Features: 
 1. Initialization, driver control, and autonomous control periods.
@@ -22,3 +23,5 @@ Comments:
 
 Bug Fixes:
 1. On-screen debugging information rearranged for ease of reading.
+2. Beta Mode autonomous selection screen now correctly prints the beta status.
+3. SwingToLocation(0) has had its value changed to the correct number.
